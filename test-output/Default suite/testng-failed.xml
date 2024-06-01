@@ -3,11 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="OnlyForQA.Deleterequest">
+      <class name="OnlyForQA.MultipleApiIntegrationTest">
         <methods>
-          <include name="DeleteBooking"/>
+          <include name="setUp"/>
+          <include name="updateUser"/>
         </methods>
-      </class> <!-- OnlyForQA.Deleterequest -->
+      </class> <!-- OnlyForQA.MultipleApiIntegrationTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
