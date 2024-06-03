@@ -5,11 +5,8 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.annotations.Test;
-
-
 
 public class CreateBooking 
 {
@@ -32,8 +29,7 @@ public class CreateBooking
 	@Test
 	public void createBooking()
 	{
-		RestAssured.baseURI = "https://restful-booker.herokuapp.com/booking";
-		
+		RestAssured.baseURI = "https://restful-booker.herokuapp.com/booking";		
 		//create a _requestSpecification
 		_requestSpecification = RestAssured.given();
 		
@@ -41,11 +37,8 @@ public class CreateBooking
 		_requestSpecification.body(jsonString);
 		_response = _requestSpecification.post();
 		
-		String responsestring = _response.prettyPrint();
-		//System.out.println(responsestring);
 		_validatableResponse = _response.then();
 		_validatableResponse.statusCode(200);
 		_validatableResponse.statusLine("HTTP/1.1 200 OK");
 	}
-
 }

@@ -1,18 +1,12 @@
 package OnlyForQA;
-
-import org.testng.Assert;
-
 import org.testng.annotations.Test;
-
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
-
 
 public class UpdateBooking {
 	RequestSpecification _requestSpecification;
@@ -37,7 +31,6 @@ public class UpdateBooking {
                 "    },\n" +
                 "    \"additionalneeds\" : \"Breakfast\"\n" +
                 "}";
-
      // Update 
         _validatableResponse = given()
                 .baseUri("https://restful-booker.herokuapp.com/booking/1")

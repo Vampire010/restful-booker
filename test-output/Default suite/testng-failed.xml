@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="OnlyForQA.MultipleApiIntegrationTest">
+      <class name="JsonManipulation.oAuthSimplified">
         <methods>
-          <include name="setUp"/>
-          <include name="updateUser"/>
+          <include name="testOAuth2Authentication"/>
         </methods>
-      </class> <!-- OnlyForQA.MultipleApiIntegrationTest -->
+      </class> <!-- JsonManipulation.oAuthSimplified -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

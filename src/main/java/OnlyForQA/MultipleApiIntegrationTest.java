@@ -11,7 +11,9 @@ import com.google.gson.JsonObject;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MultipleApiIntegrationTest {
 
@@ -28,7 +30,8 @@ public class MultipleApiIntegrationTest {
     
     @Test(priority=0)
     public void testCreateBooking() {
-        String requestBody = "{ \"firstname\": \"John\", \"lastname\": \"Doe\", \"totalprice\": 100, \"depositpaid\": true, \"bookingdates\": { \"checkin\": \"2024-06-01\", \"checkout\": \"2024-06-02\" }, \"additionalneeds\": \"Breakfast\" }";
+        String requestBody = "{ \"firstname\": \"John\", \"lastname\": \"Doe\", \"totalprice\": 100,"
+        		+ " \"depositpaid\": true, \"bookingdates\": { \"checkin\": \"2024-06-01\", \"checkout\": \"2024-06-02\" }, \"additionalneeds\": \"Breakfast\" }";
         response = RestAssured.given().contentType("application/json").body(requestBody).post("/booking");
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200, "Expected status code: 200");
@@ -81,18 +84,22 @@ public class MultipleApiIntegrationTest {
     			+ "    },\r\n"
     			+ "    \"additionalneeds\" : \"Breakfast\"\r\n"
     			+ "}";
-    	validatableResponse = given()
-                .baseUri("https://restful-booker.herokuapp.com/booking/"+bookingId)
+    	
+    	Map<String,String> data =  new HashMap<String , String>();
+		data.put("firstname", "Tata Nexon");
+		data.put("totalprice", "928000");
+		
+    	RestAssured.given()             
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
-                .body(jsonString)
+                .body(data)
                 .when()
-                .put()
-                .then()
+                .put("https://restful-booker.herokuapp.com/booking/"+bookingId)
+                .then() 
                 .assertThat().statusCode(200);
 
  
-        System.out.println("updateBookingDetails :" + validatableResponse.extract().asString());
+       // System.out.println("updateBookingDetails :" + RestAssured.);
     }
     
     @Test(priority=3)
